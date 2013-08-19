@@ -1,0 +1,63 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:TouchManipulator="clr-namespace:IpdsMultiTouch;assembly=IpdsMultiTouch" 
+		xmlns:Gestures="clr-namespace:IpdsMultiTouch.Gestures;assembly=IpdsMultiTouch" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:local="clr-namespace:ImageViewer" 
+		x:Name="baseWindow" 
+		x:Class="ImageViewer.MainWindow"
+        Title="MainWindow" 
+        
+		ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+		ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+        d:DesignHeight="1080" d:DesignWidth="1920" Background="#FFFFFFFF" Visibility="Visible" AllowsTransparency="False"  
+		
+    >
+    <Window.Resources>
+    	<ResourceDictionary>
+    		
+    			<Style TargetType="{x:Type Image}">
+    			<Setter Property="Stretch" Value="None" />
+    			<Setter Property="HorizontalAlignment" Value="Left" />
+    			<Setter Property="VerticalAlignment" Value="Top" />
+    			<Setter Property="IsManipulationEnabled" Value="True"/>
+    			<!--<Setter Property="RenderTransform" Value="0.5 0 0 0.5 100 100" />-->
+    		</Style>
+    		<Style TargetType="{x:Type MediaElement}">
+    			<Setter Property="IsManipulationEnabled" Value="True"/>
+    		</Style>
+
+      
+    		<MatrixTransform x:Key="InitialMatrixTransform">
+    			<MatrixTransform.Matrix>
+    				<Matrix OffsetX="200" OffsetY="200"/>
+    			</MatrixTransform.Matrix>
+    		</MatrixTransform>
+    		<DataTemplate x:Key="DataTemplate1">
+    			<Canvas>
+    				<Image Height="200" VerticalAlignment="Stretch" Width="200" Source="{Binding}" IsManipulationEnabled="True">
+    					<i:Interaction.Behaviors>
+    						<TouchManipulator:TouchManipulatorBehavior x:Name="tm" ContainerControl="{Binding ElementName=myCanvas}" WantToTop="tm_WantToTop"  >
+    							<TouchManipulator:TouchManipulatorBehavior.Gestures>
+    								<Gestures:Rotate />
+    								<Gestures:Scale />
+                                    <Gestures:TranslateWithBounce />
+    							</TouchManipulator:TouchManipulatorBehavior.Gestures>
+    						</TouchManipulator:TouchManipulatorBehavior>
+    					</i:Interaction.Behaviors>
+    				</Image>
+    			</Canvas>
+    		</DataTemplate>
+
+    	</ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="myGrid">
+        <Canvas x:Name="myCanvas" RenderTransformOrigin="0.5,0.5"  />
+    </Grid>
+    
+</Window>
