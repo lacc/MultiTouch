@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpdsMultiTouch", "IpdsMultiTouch\IpdsMultiTouch.csproj", "{B20C9790-58F7-43F3-AF4A-7FF31437FC1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTouchTest", "ImageViewerDemo\MultiTouchTest.csproj", "{957EE1DD-C28D-4E09-A72E-AC24E50025FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTouchTest", "MultiTouchTest\MultiTouchTest.csproj", "{957EE1DD-C28D-4E09-A72E-AC24E50025FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
