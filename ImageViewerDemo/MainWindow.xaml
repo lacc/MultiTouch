@@ -7,9 +7,9 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        xmlns:local="clr-namespace:ImageViewer" 
+        xmlns:local="clr-namespace:MultiTouchTest" 
 		x:Name="baseWindow" 
-		x:Class="ImageViewer.MainWindow"
+		x:Class="MultiTouchTest.MainWindow"
         Title="MainWindow" 
         
 		ScrollViewer.VerticalScrollBarVisibility="Hidden" 
