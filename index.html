@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Multitouch : WPF 4.0 Multi Touch library with gestures" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Multitouch</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/lacc/MultiTouch">View on GitHub</a>
+
+          <h1 id="project_title">Multitouch</h1>
+          <h2 id="project_tagline">WPF 4.0 Multi Touch library with gestures</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/lacc/MultiTouch/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/lacc/MultiTouch/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>For more information check my blog:
+<a href="http://lacckodes.blogspot.hu/2013/05/multitouch-in-wpf.html">http://lacckodes.blogspot.hu/2013/05/multitouch-in-wpf.html</a></p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>In Expression Blend you can use the library without code. Just add IpdsMultTouch.dll to project references. After this you can easily drag and drop TouchManiulatorBehavior from Assets/Behaviors to the control that you can make touchable. For finish all you need to add gestures to the behavior. Gestures can be built-in (like scale, translate, rotate) or your own and can be set on properties of the behavior. More gesture can be added.
+Here is the result:</p>
+
+<pre><code>&lt;Image Source="/Images/Hydrangeas.jpg" Stretch="Fill"&gt;
+    &lt;i:Interaction.Behaviors&gt;
+        &lt;TouchManipulator:TouchManipulatorBehavior&gt;
+            &lt;TouchManipulator:TouchManipulatorBehavior.Gestures&gt;
+                &lt;Gestures:Rotate/&gt;
+                &lt;Gestures:Scale/&gt;
+                &lt;Gestures:Translate/&gt;
+            &lt;/TouchManipulator:TouchManipulatorBehavior.Gestures&gt;
+        &lt;/TouchManipulator:TouchManipulatorBehavior&gt;
+    &lt;/i:Interaction.Behaviors&gt;
+&lt;/Image&gt;
+</code></pre>
+
+<h3>
+<a name="creating-custom-gesture" class="anchor" href="#creating-custom-gesture"><span class="octicon octicon-link"></span></a>Creating custom Gesture:</h3>
+
+<p>Creating custom Gesture is easy by inherit a class from the "aGesture" abstract class and override the Manipulate method that calling when ManipulationDelta event fire on the element. All gesture are processing sequentially by calling its Manipulate() method. Each gesture modify the matrix of the element transformation. The matrix parameter goes through gestures, all gesture make a modification on it. So be careful with the order of the gestures.
+After you build your project the gesture can be chosen in the Add item window.</p>
+
+<p>Create a simple translation gesture:</p>
+
+<pre><code>public class testGesture : IpdsMultiTouch.Gestures.aGesture
+{
+    public testGesture() : base()
+    { }
+
+    public override void Manipulate(
+        System.Windows.Input.ManipulationDeltaEventArgs args,
+        ref Matrix matrix)
+    {
+        base.Manipulate(args, ref matrix);
+        Vector trans;
+        trans = new Vector(args.DeltaManipulation.Translation.X, 
+                args.DeltaManipulation.Translation.Y);
+
+        matrix.Translate(trans.X, trans.Y);
+    }
+}
+</code></pre>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>In 2013, Lacc (<a href="https://github.com/lacc" class="user-mention">@lacc</a>).</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Multitouch maintained by <a href="https://github.com/lacc">lacc</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43310748-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
